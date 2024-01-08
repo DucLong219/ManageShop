@@ -1,0 +1,81 @@
+﻿<!--_________________________________________________________HEADER______________________________________________________________-->
+<form id="topBarForm">
+  <nav class="navbar vtp-header-navbar navbar-expand-lg navbar-light bg-white shadow">
+    <button type="button" id="sidebarCollapse" class="btn sidebar mr-2" (click)="sidebarCollapse()">
+      <i class="bi bi-filter-left"></i>
+    </button>
+    <div class="navbar-collapse d-flex" id="navbarSupportedContent">
+      <ul class="navbar-nav vtp-header-navbar-nav w-50 header-search-box">
+        <li class="nav-item w-100">
+          <div class="vtp-header-search">
+            <i class="bi bi-search"></i>
+            <input matInput type="search" class="form-control vtp-header-search-textbox"
+              placeholder="{{'search.product' | translate}}" />
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav vtp-header-navbar-nav vtp-header-user-notify">
+        <li class="nav-item dropdown">
+          <a class="nav-link text-center" data-bs-toggle="dropdown" >
+            <span class="mr-2 vtp-header-notify-text">{{'notification' | translate}}</span>
+            <img class="ico-notify" src="assets/img/bell.svg" />
+          </a>
+          <div class="dropdown-menu vtp-header-dropdown-menu vtp-header-noti pt-0">
+            <label class="dropdown-item mb-0" href="javascript:void(0)">
+              {{'new.notify' | translate}}</label>
+            <div class="notify-content">
+              <a class="dropdown-item border-top message-seen">
+                <!-- <img class="content-image-notify" src="{{getImageNotify(item)}}"> -->
+                <div class="float-left w-100">
+                  <label class="title-header">123</label>
+                  <span class="float-right">11/11/2024</span><br>
+                  <span>hê lô</span>
+                </div>
+              </a>
+            </div>
+            <div class="notify-bottom border-top">
+              <a class="btn btn-viettel btn-sm" routerLink="/thong-bao">
+                {{'view.all.notify' | translate}}
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item dropdown text-center pe-3">
+          <a class="nav-link nav-profile d-flex align-items-center" href="#" id="dropdownMenu" data-bs-toggle="dropdown">
+            <img src="assets/img/icon-user.png" alt="Profile">
+            <span class="d-none d-md-block dropdown-toggle ps-2" >Long Chu</span>
+          </a>
+            <ul class="dropdown-menu vtp-header-dropdown-menu dropdown-menu-end dropdown-menu-arrow profile" aria-labelledby="dropdownMenu" >
+              <li>
+                <div class="dropdown-header">
+                  <h6>Long Chu</h6>
+                  <span>0971554201</span>
+                </div>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="/user-profile">
+                  <i class="bi bi-gear"></i>
+                  <span>Account Settings</span>
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="/pages-faq">
+                  <i class="bi bi-question-circle"></i>
+                  <span>Need Help?</span>
+                </a>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" routerLink="/auth/login">
+                  <i class="bi bi-box-arrow-right"></i>
+                  <span>Sign Out</span>
+                </a>
+              </li>
+            </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</form>

@@ -1,24 +1,50 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { HomeComponent } from 'src/home/home.component';
-import { ApiSettingService } from 'src/services/api.config';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BaseComponent } from 'src/base-component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from 'src/modules/material.module';
+import { SuppliersManageComponent } from 'src/form/suppliers-manage/suppliers-manage.component';
+import { DefaultLayoutComponent } from 'src/form/layouts/default-layout';
+import * as authContainers from 'src/form/auth/containers';
+import { CategoryManageComponent } from 'src/form/category-manage/category-manage.component';
+import { HeaderComponent } from 'src/form/header';
+import { LeftMenuComponent } from 'src/form/left-menu';
+import { AppSettings } from 'src/services/api.config';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    
+    SuppliersManageComponent,
+    DefaultLayoutComponent,...authContainers.containers,
+    LeftMenuComponent,HeaderComponent,DefaultLayoutComponent, CategoryManageComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule,TranslateModule.forRoot({
+      defaultLanguage: environment.default_language,
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
   ],
-  providers: [ApiSettingService],
+  providers: [BaseComponent,AppSettings],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

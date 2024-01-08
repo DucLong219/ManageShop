@@ -1,0 +1,37 @@
+<vtp-spiner></vtp-spiner>
+<app-maintain *ngIf="maintainFlg"></app-maintain>
+<div *ngIf="!maintainFlg">
+  <!-- //NOSONAR -->
+<!--  <a class="app-store-header justify-content-between" href="https://appviettelpost.page.link/mweb_install" rel="noopener noreferrer" target="_blank" *ngIf="!checkPageEVN && !screenOrderNoLogin">-->
+<!--    <div>{{'tai_ve_tren_nen_tang_dong' | translate}}</div>-->
+<!--    <div *ngIf="isIos || isWeb">-->
+<!--      <img class="icon-store" src="/assets/img/icon/ico-store-ios.png"> App Store-->
+<!--    </div>-->
+<!--    <div *ngIf="isAndroid || isWeb">-->
+<!--      <img class="icon-store" src="/assets/img/icon/ico-store-android.svg"> Google Play-->
+<!--    </div>-->
+<!--  </a>-->
+  <div class="wrapper vtp-web" *ngIf="!checkPageEVN">
+    <div *ngIf="currentUser">
+      <div id="chatbox"></div>
+      <!-- Sidebar  -->
+      <nav id="sidebar">
+        <left-menu></left-menu>
+      </nav>
+      <app-modal-update-information></app-modal-update-information>
+      <app-conner-popup></app-conner-popup>
+      <app-modal-new-price-service></app-modal-new-price-service>
+      <app-mkt-popup></app-mkt-popup>
+    </div>
+    <!-- Page Content  -->
+    <div [id]="currentUser? 'content' : 'content-no-login'">
+      <header-app *ngIf="currentUser"></header-app>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="wrapper vtp-web" *ngIf="checkPageEVN">
+    <div [id]="currentUser? 'contentEvn' : 'content-no-login'">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

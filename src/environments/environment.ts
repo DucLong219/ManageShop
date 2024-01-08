@@ -1,4 +1,6 @@
 export const environment = {
     production: true,
-    domain: 'http://prod.com/'
-};
+    base_host: "http://localhost:5002",
+    default_language: 'vi-VN'
+  };
+  
