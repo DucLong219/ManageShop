@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Proj123": {
+    "ManageShop": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/proj123",
+            "outputPath": "dist/ManageShop",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -85,13 +85,13 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Proj123:build:production"
+              "browserTarget": "ManageShop:build:production"
             },
             "development": {
-              "browserTarget": "Proj123:build:development"
+              "browserTarget": "ManageShop:build:development"
             },
             "stg": {
-              "browserTarget": "Proj123:build:stg"
+              "browserTarget": "ManageShop:build:stg"
             }
           },
           "defaultConfiguration": "development"
@@ -99,7 +99,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Proj123:build"
+            "browserTarget": "ManageShop:build"
           }
         },
         "test": {
