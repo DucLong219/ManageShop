@@ -1,0 +1,90 @@
+.vtp-show {
+	display: block;
+}
+.left-menu {
+  .menu-icon-pie-chart {
+    content: url(/assets/img/ic-left-menu/pie-chart-gray.svg);
+  }
+
+  .active .menu-icon-pie-chart {
+    content: url(/assets/img/ic-left-menu/pie-chart-red.svg);
+  }
+
+  .menu-icon-package {
+    content: url(/assets/img/ic-left-menu/package-gray.svg);
+  }
+
+  .menu-icon-server {
+    content: url(/assets/img/ic-left-menu/server-gray.svg);
+  }
+
+  .menu-icon-location {
+    content: url(/assets/img/ic-left-menu/location-gray.svg);
+  }
+
+  .menu-icon-message {
+    content: url(/assets/img/ic-left-menu/message-gray.svg);
+    width: 17px !important;
+  }
+
+  .active .menu-icon-message {
+    content: url(/assets/img/ic-left-menu/message-red.svg);
+    width: 17px !important;
+  }
+
+  .menu-icon-settings {
+    content: url(/assets/img/ic-left-menu/settings-gray.svg);
+  }
+
+  .active .menu-icon-settings {
+    content: url(/assets/img/ic-left-menu/settings-red.svg);
+  }
+
+  .menu-icon-feedback {
+    content: url(/assets/img/ic-left-menu/feedback-gray.svg);
+  }
+
+  .active .menu-icon-feedback {
+    content: url(/assets/img/ic-left-menu/feedback-red.svg);
+  }
+
+  .menu-icon-conversation {
+    content: url(/assets/img/ic-left-menu/life-buoy-gray.svg);
+  }
+
+  .menu-icon-bar-chart {
+    content: url(/assets/img/ic-left-menu/bar-chart-gray.svg);
+  }
+
+  .active .menu-icon-bar-chart {
+    content: url(/assets/img/ic-left-menu/bar-chart-red.svg);
+  }
+  .menu-icon-market-analysis {
+    content: url(/assets/img/ic-left-menu/beecost-gray.svg);
+    width: 17px !important;
+  }
+  .active .menu-icon-market-analysis {
+    content: url(/assets/img/ic-left-menu/beecost-red.svg);
+    width: 17px !important;
+  }
+  .menu-icon-utilities {
+    content: url(/assets/img/ic-left-menu/tien-ich.svg);
+  }
+  .menu-icon-packing-products {
+    content: url(/assets/img/ic-left-menu/box.svg);
+    width: 17px !important;
+  }
+  .text {
+    padding: 8px 0px 0px 10px !important;
+  }
+  .menu-icon-sales-manager {
+    content: url(/assets/img/ic-left-menu/quan-ly-ban-hang.svg);
+  }
+  .menu-icon-mic {
+    content: url(/assets/img/ic-left-menu/mic-black.svg);
+  }
+  .active .menu-icon-mic {
+    content: url(/assets/img/ic-left-menu/mic-red.svg);
+    width: 17px !important;
+  }
+}

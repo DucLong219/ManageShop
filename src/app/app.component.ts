@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApiSettingService } from 'src/services/api.config';
+
 
 @Component({
   selector: 'app-root',
@@ -7,10 +7,6 @@ import { ApiSettingService } from 'src/services/api.config';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private apiService: ApiSettingService) {
-    this.apiService.get().subscribe((res)=>{
-      console.log(123);
-      
-    })
-   }
+  constructor() {
+  }
 }

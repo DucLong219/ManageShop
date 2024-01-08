@@ -1,0 +1,10 @@
+{
+  "home": "Home",
+  "category.manage": "Category manage",
+  "supplier.manage": "Supplier manage",
+  "notification":"Notification",
+  "logout":"Logout",
+  "new.notify":"Notify new",
+  "view.all.notify":"View all notify",
+  "search.product":"Search product"
+}

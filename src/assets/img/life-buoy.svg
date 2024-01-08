@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>C7B8C926-8E7C-4666-84CF-B4EC373B48DE@1x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="1-Redesign" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.7" stroke-linecap="round" stroke-linejoin="round">
+        <g id="1-Tao-don-hang-trong-nuoc" transform="translate(-20.000000, -592.000000)" stroke="#FFFFFF" stroke-width="1.4">
+            <g id="Group-14">
+                <g id="Group-13" transform="translate(0.000000, 68.000000)">
+                    <g id="life-buoy" transform="translate(21.000000, 525.000000)">
+                        <circle id="Oval" cx="8" cy="8" r="8"></circle>
+                        <circle id="Oval" cx="8" cy="8" r="3.2"></circle>
+                        <path d="M2.344,2.344 L5.736,5.736" id="Shape"></path>
+                        <path d="M10.264,10.264 L13.656,13.656" id="Shape"></path>
+                        <path d="M10.264,5.736 L13.656,2.344" id="Shape"></path>
+                        <path d="M10.264,5.736 L13.088,2.912" id="Shape"></path>
+                        <path d="M2.344,13.656 L5.736,10.264" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

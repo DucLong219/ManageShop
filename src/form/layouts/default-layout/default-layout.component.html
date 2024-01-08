@@ -1,0 +1,22 @@
+<div class="wrapper vtp-web">
+    <div>
+        <div id="chatbox"></div>
+        <nav id="sidebar">
+            <left-menu></left-menu>
+            <button (click)="changeLanguage(1)">English</button>
+            <button (click)="changeLanguage(2)">Việt Nam</button>
+        </nav>
+    </div>
+    <div id="content">
+        <header-app></header-app>
+        <div class="card border-0">
+            <div class="card-body">
+                <div class="px-1 py-3">
+                   <h4>{{this.titleComponent}}</h4> 
+                </div>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+
+    </div>
+</div>
