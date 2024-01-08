@@ -12,26 +12,26 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$Proj123-primary: mat.define-palette(mat.$indigo-palette);
-$Proj123-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$ManageShop-primary: mat.define-palette(mat.$indigo-palette);
+$ManageShop-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$Proj123-warn: mat.define-palette(mat.$red-palette);
+$ManageShop-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$Proj123-theme: mat.define-light-theme((
+$ManageShop-theme: mat.define-light-theme((
   color: (
-    primary: $Proj123-primary,
-    accent: $Proj123-accent,
-    warn: $Proj123-warn,
+    primary: $ManageShop-primary,
+    accent: $ManageShop-accent,
+    warn: $ManageShop-warn,
   )
 ));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($Proj123-theme);
+@include mat.all-component-themes($ManageShop-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
