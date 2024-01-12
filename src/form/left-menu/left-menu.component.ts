@@ -153,7 +153,7 @@ export class LeftMenuComponent implements OnInit {
     // this.checkIsUpdateInformation(pathRedirect);
     // const currentPath = window.location.pathname;
     // if (currentPath.indexOf(pathRedirect) != -1) return;
-    // this.router.navigate([pathRedirect]);
+    this.router.navigate([pathRedirect]);
   }
 
   logout() {
