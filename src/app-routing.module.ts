@@ -13,7 +13,7 @@ const routes: Routes = [
       breadcrumb: 'Home'
     }, children: [
       {
-        path: 'dashboard', component: SuppliersManageComponent,
+        path: 'import-supplier', component: SuppliersManageComponent,
         data: {
           breadcrumb: 'Quản lý nhà cung cấp'
         },
@@ -21,7 +21,7 @@ const routes: Routes = [
       {
         path: 'category', component: CategoryManageComponent,
         data: {
-          breadcrumb: 'Quản lý mặt hàng'
+          breadcrumb: 'Quản lý danh mục'
         },
       },
 

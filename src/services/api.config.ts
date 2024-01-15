@@ -4,6 +4,7 @@ export class AppSettings {
 
   //Category
   public static API_GET_LIST_CATEGORY = AppSettings.API_ENDPOINT + '/api/v1/microservices/category/get-navigation?api-version=1';
+  public static API_SEARCH_CATEGORY = AppSettings.API_ENDPOINT + '/api/v1/microservices/category/get-paging?api-version=1';
   public static API_GET_CATEGORY_ID = AppSettings.API_ENDPOINT + '/api/v1/microservices/category/get-hierarchy-by-id/';
   public static API_GET_CATEGORY_ALIAS = AppSettings.API_ENDPOINT + '/api/v1/microservices/category/get-navigation?api-version=1';
   //Supplier

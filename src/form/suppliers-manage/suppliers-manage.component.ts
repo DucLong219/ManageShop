@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, Directive, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -17,9 +18,9 @@ import { AppSettings } from 'src/services/api.config';
 export class SuppliersManageComponent extends BaseComponent implements OnInit {
   suppilerColumns: string[] = AppSettings.suppliersColumn;
   // dataSource: any;
-  listData: any;
+  listData: any[] = [];
   numberShowPages = [4, 6, 10];
-  pageIndex: number = 1;
+  pageIndex: number = 0;
   pageSize: number = 4;
   pageLength: number = 0;
   dataSource: any = new MatTableDataSource();
@@ -67,6 +68,8 @@ export class SuppliersManageComponent extends BaseComponent implements OnInit {
           this.pageLength = res.data.totalCount;
           console.log(this.listData);
 
+        }else{
+          this.listData = [];
         }
       }
       )
@@ -75,6 +78,41 @@ export class SuppliersManageComponent extends BaseComponent implements OnInit {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
     this.searchSuppliers();
+  }
+  listChecked: any[] = []
+  listCheckedAll: any[] = []
+  selection: any = new SelectionModel<any>(true, []);
+  initDeleteMul() {
+    console.log(this.listChecked, 'listchecked');
+
+  }
+  checkAll(event: any) {
+    if (event.checked) {
+      this.listChecked = this.listData.map((res: any) => res);
+    } else {
+      this.listChecked = [];
+    }
+
+    console.log(this.listChecked, 'this.listChecked');
+
+  }
+  checkOne(element: any) {
+    const selectElement = this.selection.isSelected(element.id);
+    console.log(selectElement, 'selectElement');
+    if (selectElement) {
+      this.selection.deselect(element.id);
+      if (this.listChecked.length > 0) {
+        this.listChecked = this.listChecked.filter(x => x.id !== element.id);
+      }
+    } else {
+      this.selection.select(element.id);
+      const isExistSelected = this.listChecked.filter(x => x.id === element.id)[0];
+      if (!isExistSelected) {
+        this.listChecked.push(element);
+      }
+    }
+    console.log(this.listChecked, ' this.listChecked this.listChecked');
+
   }
   initEdit(item: any) { }
   initDelete(item: any) { }

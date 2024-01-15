@@ -5,6 +5,7 @@ import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { TranslateService } from '@ngx-translate/core';
 import { Directive, ElementRef, OnDestroy } from '@angular/core';
 import { SupplierService } from './services/supplier.service';
+import { CategoryService } from './services/category.service';
 // import { AuthenticationService } from './services/authentication.service';
 
 declare var $: any;
@@ -24,6 +25,8 @@ export class BaseComponent implements OnDestroy {
     public translate: TranslateService,
     public activatedRoute: ActivatedRoute,
     public el: ElementRef,
+    public categoryService: CategoryService
+
   ) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -83,10 +86,12 @@ export class BaseComponent implements OnDestroy {
   }
   ngOnDestroy(): void {
     // unsubscribe khi destroy
-    if (this._onDestroySub) {
+    console.log(123);
+    
+    // if (this._onDestroySub) {
       this._onDestroySub.next();
       this._onDestroySub.complete();
       this._onDestroySub.unsubscribe();
-    }
+    // }
   }
 }
