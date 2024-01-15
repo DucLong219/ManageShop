@@ -1,11 +1,11 @@
 ﻿<ul class="left-menu nav nav-tabs vtp-reponsive-left-menu">
   <div class="sidebar-header">
-    <a class="cus-logo vtp-left-menu-logo-main" [routerLink]="['/dashboard']">
+    <a class="cus-logo vtp-left-menu-logo-main" [routerLink]="['']">
       <img class="vtp-logo-desktop" src="assets/img/logo_black.png" alt="">
       <img class="vtp-logo-desktop" src="assets/img/logo_black.png" alt="">
       <img class="vtp-logo-desktop" src="assets/img/logo_black.png" alt="">
     </a>
-    <a class="vtp-left-menu-logo-icon" [routerLink]="['/dashboard']">
+    <a class="vtp-left-menu-logo-icon" [routerLink]="['']">
       <img class="vtp-logo-tablet" src="assets/img/logo-icon.jpg" alt="">
     </a>
   </div>
@@ -20,7 +20,14 @@
     <a class="nav-link vtp-header-nav-link-main" id="dashboard" aria-expanded="true"
       (click)="goToMenu('/import-supplier')">
       <img class="menu-icon-pie-chart">
-      <span>Import Suppliers</span>
+      <span>Quản lý NCC</span>
+    </a>
+  </li>
+  <li class="nav-item vtp-lm-dashboard vtp-check-menu vtp-header-li-main">
+    <a class="nav-link vtp-header-nav-link-main" id="dashboard" aria-expanded="true"
+      (click)="goToMenu('/category')">
+      <img class="menu-icon-pie-chart">
+      <span>Danh mục</span>
     </a>
   </li>
   <li class="nav-item vtp-lm-create-order vtp-header-li-main">
@@ -77,104 +84,5 @@
       </li>
     </ul>
   </li>
-  <!-- <li class="nav-item vtp-lm-search vtp-header-li-main">
-    <a href="#traCuu" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle vtp-header-nav-link-main">
-      <img class="menu-icon-location">
-      <span>{{'vtp.label.left.menu.tra.cuu' | translate}}</span>
-    </a>
-    <ul class="collapse" id="traCuu">
-      <li class="nav-item vtp-check-menu">
-        <a class="nav-link" id="mang-luoi-buu-cuc" routerLink="/mang-luoi-buu-cuc" >
-          <span>{{'vtp.label.left.menu.tra.cuu.buu.cuc' | translate}}</span>
-        </a>
-      </li>
-      <li class="nav-item vtp-check-menu">
-        <a class="nav-link" id="tra-cuu-cuoc-phi" routerLink="/tra-cuu-cuoc-phi" >
-          <span>{{'vtp.label.left.menu.tra.cuu.cuoc.phi' | translate}}</span>
-        </a>
-      </li>
-    </ul>
-  </li>
-  <li class="nav-item vtp-lm-search vtp-header-li-main">
-    <a class="nav-link vtp-header-nav-link-main" id="qlbanhang">
-      <img class="menu-icon-sales-manager">
-      <span>{{'vtp.label.left.menu.quan.ly.ban.hang' | translate}}</span>
-      <img class="ml-2" style="width: 23px; height: 23px" src="assets/img/icon/new.svg" />
-    </a>
-  </li>
-  <li class="nav-item vtp-lm-order-management vtp-header-li-main">
-    <a class="nav-link" href="#tinTuc" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle vtp-header-nav-link-main">
-      <img class="menu-icon-utilities">
-      <span>{{'vtp.label.left.menu.tien.ich' | translate}}</span>
-    </a>
-    <ul class="collapse  list-unstyled" id="tinTuc">
-      <li class="nav-item vtp-check-menu">
-        <a class="nav-link" id="in-nhan-canh-bao">
-            <span>{{'vtp.label.left.menu.in.nhan.canh.bao' | translate}}</span>
-        </a>
-      </li>
-      <li class="nav-item vtp-check-menu">
-        <a class="nav-link" id="dong-goi-hang-hoa">
-          <div class="ml-3">
-            <img class="menu-icon-packing-products">
-            <span class="text">{{'vtp.label.left.menu.dong.goi.hang.hoa' | translate}}</span>
-            <img class="ml-2" style="width: 23px; height: 23px" src="assets/img/icon/new.svg" />
-          </div>
-        </a>
-      </li>
-      <li class="nav-item vtp-check-menu">
-        <a class="nav-link" id="bao-hiem-hang-hoan">
-          <div class="ml-3">
-            <img class="menu-icon-mic">
-            <span class="text">{{'vtp.label.left.menu.dich.vu.hoan.cuoc' | translate}}</span>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </li>
-  <li class="nav-item vtp-lm-setting-account vtp-check-menu vtp-header-li-main">
-    <a class="nav-link vtp-header-nav-link-main" id="cau-hinh-tai-khoan" routerLink="/cau-hinh-tai-khoan"
-      (click)="goToMenu('/cau-hinh-tai-khoan')">
-      <img class="menu-icon-settings">
-      <span>{{'vtp.label.left.menu.cau.hinh.tai.khoan' | translate}}</span>
-    </a>
-  </li>
-  <li class="nav-item vtp-lm-support-qa vtp-header-li-main">
-    <a href="#hoiDap" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle vtp-header-nav-link-main">
-      <img class="menu-icon-conversation">
-      <span>{{'vtp.label.left.menu.hoi.dap.tro.giup' | translate}}</span>
-    </a>
-    <ul class="collapse  list-unstyled" id="hoiDap">
-      <li class="nav-item vtp-check-menu">
-        <a class="nav-link" id="huong-dan-su-dung" routerLink="/support/huong-dan-su-dung" >
-          <span>{{'vtp.label.left.menu.hoi.dap' | translate}}</span>
-        </a>
-      </li>
-      <li class="nav-item vtp-check-menu">
-        <a class="nav-link" id="dieu-khoan-quy-dinh" href="https://vtpost.page.link/dieu_khoan_quy_dinh" rel="noopener noreferrer" target="_blank" >
-          <span>{{'vtp.label.left.menu.dieu.khoan.quy.dinh' | translate}}</span>
-        </a>
-      </li>
-      <li class="nav-item vtp-check-menu">
-        <a class="nav-link" id="gop-y-khieu-nai" routerLink="/support/gop-y-khieu-nai" >
-          <span>{{'vtp.label.left.menu.gop.y.khieu.nai' | translate}}</span>
-        </a>
-      </li>
-    </ul>
-  </li>
-
-  <li class="nav-item vtp-lm-campain vtp-check-menu vtp-header-li-main">
-    <a class="nav-link vtp-header-nav-link-main" id="campain" routerLink="/campain" >
-      <img class="menu-icon-bar-chart">
-      <span>{{'vtp.label.left.menu.khao.sat' | translate}}</span>
-    </a>
-  </li> -->
-
-  <!-- <li class="nav-item vtp-lm-logout vtp-check-menu vtp-header-li-main">
-    <a class="nav-link vtp-header-nav-link-main" (click)="logout()">
-      <img src="assets/img/logout.png" alt="logout">
-      <span>{{'logout' | translate}}</span>
-    </a>
-  </li> -->
 </ul>
 

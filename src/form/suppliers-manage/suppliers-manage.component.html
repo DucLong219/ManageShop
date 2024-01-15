@@ -42,7 +42,7 @@
         </div>
     </div>
 </div> -->
-<table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
+<table *ngIf="listData.length > 0"  mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
 
     <!-- Position Column -->
     <ng-container matColumnDef="select">
@@ -124,10 +124,10 @@
     <tr mat-row *matRowDef="let row; columns: suppilerColumns;"></tr>
 </table>
 
-<mat-paginator #paginator aria-label="Select page" [length]="pageLength" [pageIndex]="pageIndex" [pageSize]="pageSize"
+<mat-paginator *ngIf="listData.length > 0" #paginator aria-label="Select page" [length]="pageLength" [pageIndex]="pageIndex" [pageSize]="pageSize"
     [pageSizeOptions]="numberShowPages" [showFirstLastButtons]="true" (page)="onPaging($event)">
 </mat-paginator>
-
+<div *ngIf="!listData || listData.length <= 0"> Không có dữ liệu !</div>
 <mat-form-field>
     <mat-label>Select an option</mat-label>
     <mat-select>

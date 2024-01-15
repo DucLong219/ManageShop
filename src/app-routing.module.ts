@@ -21,7 +21,7 @@ const routes: Routes = [
       {
         path: 'category', component: CategoryManageComponent,
         data: {
-          breadcrumb: 'Quản lý mặt hàng'
+          breadcrumb: 'Quản lý danh mục'
         },
       },
 

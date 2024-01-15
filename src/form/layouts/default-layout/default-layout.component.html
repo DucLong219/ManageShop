@@ -11,8 +11,16 @@
         <header-app></header-app>
         <div class="card border-0">
             <div class="card-body">
-                <div class="px-1 py-3">
-                   <h4>{{this.titleComponent}}</h4> 
+                <div class="pagetitle">
+                    <nav>
+                        <ol class="breadcrumb">
+                            <li *ngFor="let breadcrumb of breadcrumbs" class="breadcrumb-item" routerLinkActive="active">
+                                <span [routerLink]="breadcrumb.url">
+                                    {{ breadcrumb.label }}
+                                </span>
+                            </li>
+                        </ol>
+                    </nav>
                 </div>
                 <router-outlet></router-outlet>
             </div>

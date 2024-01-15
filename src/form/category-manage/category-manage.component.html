@@ -1,1 +1,4 @@
-<p>category-manage works!</p>
+<menu-category [menuItems]="listCategories"></menu-category>
+<mat-paginator *ngIf="listCategories.length > 0" #paginator aria-label="Select page" [length]="pageLength" [pageIndex]="pageIndex" [pageSize]="pageSize"
+    [pageSizeOptions]="numberShowPages" [showFirstLastButtons]="true" (page)="onPaging($event)">
+</mat-paginator>

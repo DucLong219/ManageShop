@@ -1,0 +1,16 @@
+<div class="card border-0">
+    <div class="card-header" *ngIf="menuName">
+        <span>{{menuName}}</span>
+    </div>
+    <div class="card-body">
+        <div class="menu-category row ">
+            <div class="col-md-2 border menuItems" *ngFor="let item of menuItems">
+                <div (click)="handleItems(item)"
+                    class="d-flex flex-column p-3 justify-content-between align-items-center">
+                    <img class="img-category" [src]="item.url" [alt]="item.name">
+                    <span>{{ item.name }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

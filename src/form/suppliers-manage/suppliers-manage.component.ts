@@ -18,9 +18,9 @@ import { AppSettings } from 'src/services/api.config';
 export class SuppliersManageComponent extends BaseComponent implements OnInit {
   suppilerColumns: string[] = AppSettings.suppliersColumn;
   // dataSource: any;
-  listData: any;
+  listData: any[] = [];
   numberShowPages = [4, 6, 10];
-  pageIndex: number = 1;
+  pageIndex: number = 0;
   pageSize: number = 4;
   pageLength: number = 0;
   dataSource: any = new MatTableDataSource();
@@ -68,6 +68,8 @@ export class SuppliersManageComponent extends BaseComponent implements OnInit {
           this.pageLength = res.data.totalCount;
           console.log(this.listData);
 
+        }else{
+          this.listData = [];
         }
       }
       )

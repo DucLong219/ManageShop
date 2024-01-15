@@ -1,0 +1,15 @@
+.menu-category {
+    .menuItems {
+        .img-category {
+            width: 100%;
+            height: width ;
+
+
+        }
+
+        & img,
+        & span {
+            cursor: pointer;
+        }
+    }
+}

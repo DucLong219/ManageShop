@@ -17,6 +17,8 @@ import { LeftMenuComponent } from 'src/form/left-menu';
 import { AppSettings } from 'src/services/api.config';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
+import { CategoryService } from 'src/services/category.service';
+import { MenuCategoryComponent } from 'src/form/category-manage/menu-category/menu-category.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { environment } from 'src/environments/environment';
     SuppliersManageComponent,
     DefaultLayoutComponent,...authContainers.containers,
     LeftMenuComponent,HeaderComponent,DefaultLayoutComponent, CategoryManageComponent,
+    MenuCategoryComponent
 
   ],
   imports: [
@@ -41,7 +44,7 @@ import { environment } from 'src/environments/environment';
       }
     }),
   ],
-  providers: [BaseComponent,AppSettings],
+  providers: [BaseComponent,AppSettings,CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
