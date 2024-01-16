@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Directive, ElementRef, OnDestroy } from '@angular/core';
 import { SupplierService } from './services/supplier.service';
 import { CategoryService } from './services/category.service';
+import { ValidatorService } from './services/validator.service';
 // import { AuthenticationService } from './services/authentication.service';
 
 declare var $: any;
@@ -25,7 +26,8 @@ export class BaseComponent implements OnDestroy {
     public translate: TranslateService,
     public activatedRoute: ActivatedRoute,
     public el: ElementRef,
-    public categoryService: CategoryService
+    public categoryService: CategoryService,
+    public validatorService: ValidatorService
 
   ) {
     this.router.events

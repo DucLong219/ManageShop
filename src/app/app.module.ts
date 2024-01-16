@@ -19,6 +19,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 import { CategoryService } from 'src/services/category.service';
 import { MenuCategoryComponent } from 'src/form/category-manage/menu-category/menu-category.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ValidatorService } from 'src/services/validator.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,7 @@ import { MenuCategoryComponent } from 'src/form/category-manage/menu-category/me
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,FormsModule,ReactiveFormsModule,
     MaterialModule,TranslateModule.forRoot({
       defaultLanguage: environment.default_language,
       loader: {
@@ -44,7 +46,7 @@ import { MenuCategoryComponent } from 'src/form/category-manage/menu-category/me
       }
     }),
   ],
-  providers: [BaseComponent,AppSettings,CategoryService],
+  providers: [BaseComponent,AppSettings,CategoryService,ValidatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
