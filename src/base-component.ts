@@ -7,6 +7,8 @@ import { Directive, ElementRef, OnDestroy } from '@angular/core';
 import { SupplierService } from './services/supplier.service';
 import { CategoryService } from './services/category.service';
 import { ValidatorService } from './services/validator.service';
+import { ToastrService } from 'ngx-toastr';
+import { ModalService } from './services/modal.service';
 // import { AuthenticationService } from './services/authentication.service';
 
 declare var $: any;
@@ -27,7 +29,10 @@ export class BaseComponent implements OnDestroy {
     public activatedRoute: ActivatedRoute,
     public el: ElementRef,
     public categoryService: CategoryService,
-    public validatorService: ValidatorService
+    public validatorService: ValidatorService,
+    public toastrService: ToastrService,
+    public modalService: ModalService,
+
 
   ) {
     this.router.events
@@ -58,7 +63,12 @@ export class BaseComponent implements OnDestroy {
       $('.selectpicker').selectpicker('refresh');
     }, 100);
   }
-  compare(a:any, b:any, isAsc: boolean) {
+  copyValue(value: any) {
+    navigator.clipboard.writeText(value).then(() => {
+      this.toastrService.success('Copy thành công');
+    })
+  }
+  compare(a: any, b: any, isAsc: boolean) {
     if (a == undefined || a == null) {
       a = '';
     }
@@ -89,11 +99,11 @@ export class BaseComponent implements OnDestroy {
   ngOnDestroy(): void {
     // unsubscribe khi destroy
     console.log(123);
-    
+
     // if (this._onDestroySub) {
-      this._onDestroySub.next();
-      this._onDestroySub.complete();
-      this._onDestroySub.unsubscribe();
+    this._onDestroySub.next();
+    this._onDestroySub.complete();
+    this._onDestroySub.unsubscribe();
     // }
   }
 }

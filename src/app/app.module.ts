@@ -4,9 +4,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { BaseComponent } from 'src/base-component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/modules/material.module';
 import { SuppliersManageComponent } from 'src/form/suppliers-manage/suppliers-manage.component';
 import { DefaultLayoutComponent } from 'src/form/layouts/default-layout';
@@ -21,23 +21,33 @@ import { CategoryService } from 'src/services/category.service';
 import { MenuCategoryComponent } from 'src/form/category-manage/menu-category/menu-category.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidatorService } from 'src/services/validator.service';
+import { ToastrModule, provideToastr } from 'ngx-toastr';
+import { ModalConfirmDeleteComponent } from 'src/modals/modal-confirm-delete/modal-confirm-delete.component';
+import { ModalService } from 'src/services/modal.service';
+import { ModalAddUpdateCategoryComponent } from 'src/modals/modal-add-update-category/modal-add-update-category.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { JwtInterceptor } from 'src/helpers/jwt.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    
+
     SuppliersManageComponent,
-    DefaultLayoutComponent,...authContainers.containers,
-    LeftMenuComponent,HeaderComponent,DefaultLayoutComponent, CategoryManageComponent,
-    MenuCategoryComponent
+    DefaultLayoutComponent, ...authContainers.containers,
+    LeftMenuComponent, HeaderComponent, DefaultLayoutComponent, CategoryManageComponent,
+    MenuCategoryComponent,ModalConfirmDeleteComponent,ModalAddUpdateCategoryComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,FormsModule,ReactiveFormsModule,
-    MaterialModule,TranslateModule.forRoot({
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxSpinnerModule.forRoot(),
+    ToastrModule.forRoot(),
+    MaterialModule, TranslateModule.forRoot({
       defaultLanguage: environment.default_language,
       loader: {
         provide: TranslateLoader,
@@ -46,7 +56,18 @@ import { ValidatorService } from 'src/services/validator.service';
       }
     }),
   ],
-  providers: [BaseComponent,AppSettings,CategoryService,ValidatorService],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    BaseComponent,
+    AppSettings,
+    CategoryService,
+    ValidatorService,ModalService,
+    provideAnimations(),
+    provideToastr({
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    })],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
