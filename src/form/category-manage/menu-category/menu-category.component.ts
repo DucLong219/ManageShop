@@ -7,7 +7,7 @@ declare var $: any;
   templateUrl: './menu-category.component.html',
   styleUrls: ['./menu-category.component.scss']
 })
-export class MenuCategoryComponent extends CategoryManageComponent implements AfterViewInit {
+export class MenuCategoryComponent extends CategoryManageComponent implements  OnInit {
   @Input() menuItems: any[] = [];
   childMenuItems: any;
   menuName: string = '';
@@ -57,9 +57,12 @@ export class MenuCategoryComponent extends CategoryManageComponent implements Af
   editCate(item: any) {
     this.ckEdit = true
     this.categoryDeteil = item;
+    console.log(this.categoryDeteil,'this.categoryDeteil1');
+    
+    console.log('vào đây');
     setTimeout(() => {
       this.modalService.open('modalAddCate');
-    }, 200)
+    }, 100)
   }
 
 }

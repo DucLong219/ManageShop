@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/base-component';
@@ -9,9 +9,10 @@ declare var $: any;
   templateUrl: './modal-add-update-category.component.html',
   styleUrls: ['./modal-add-update-category.component.scss']
 })
-export class ModalAddUpdateCategoryComponent extends BaseComponent implements OnInit {
+export class ModalAddUpdateCategoryComponent extends BaseComponent implements OnDestroy, OnInit {
 
   @Input() categoryDeteil: any;
+  @Output() ckEdit = new EventEmitter();
   createFormCate: FormGroup = new FormGroup({});
   listAllCategories: any;
   ngOnInit(): void {
@@ -23,13 +24,15 @@ export class ModalAddUpdateCategoryComponent extends BaseComponent implements On
   ngAfterViewInit() {
     $('#modalAddCate').on('hidden.bs.modal', () => {
       // Xử lý khi modal được đóng
-      console.log(123);
-
+      console.log(12345);
+      // this.categoryDeteil = null;
+      this.ckEdit.emit(true);
       this.f.name.reset();
       this.f.alias.reset();
       this.f.description.reset();
       this.f.level.reset();
       this.f.fileName.reset();
+      this.f.url.reset();
       this.f.orderNumber.reset();
       this.f.parentId.reset();
 
@@ -39,6 +42,8 @@ export class ModalAddUpdateCategoryComponent extends BaseComponent implements On
     return this.createFormCate.controls;
   }
   initForm() {
+    console.log(this.categoryDeteil, 'this.categoryDeteil2');
+
     this.createFormCate = this.formBuilder.group({
       name: ['', [Validators.required]],
       alias: ['', [Validators.required]],

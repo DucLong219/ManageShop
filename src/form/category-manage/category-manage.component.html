@@ -6,4 +6,4 @@
     [pageIndex]="pageIndex" [pageSize]="pageSize" [pageSizeOptions]="numberShowPages" [showFirstLastButtons]="true"
     (page)="onPaging($event)">
 </mat-paginator>
-<app-modal-add-update-category *ngIf="ckEdit"></app-modal-add-update-category>
+<app-modal-add-update-category *ngIf="ckEdit" (ckEdit)="ckEvent($event)"></app-modal-add-update-category>

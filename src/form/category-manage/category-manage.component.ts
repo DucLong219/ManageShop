@@ -10,7 +10,7 @@ declare var $: any;
   templateUrl: './category-manage.component.html',
   styleUrls: ['./category-manage.component.scss']
 })
-export class CategoryManageComponent extends BaseComponent implements AfterViewInit, OnInit {
+export class CategoryManageComponent extends BaseComponent implements  OnInit {
   listCategories: any[] = [];
   numberShowPages = [12, 24, 48];
   pageIndex: number = 0;
@@ -26,20 +26,15 @@ export class CategoryManageComponent extends BaseComponent implements AfterViewI
     })
     this.initForm();
   }
-  ngAfterViewInit() {
-    $('#modalAddCate').on('hidden.bs.modal', () => {
-      // Xử lý khi modal được đóng
-      console.log(123);
-      
-      this.ckEdit = false;
-
-    });
-  }
   initForm() {
     this.getListCategory();
   }
 
-
+  ckEvent(event:any){
+    if(event){
+      this.ckEdit = false
+    }
+  }
   getListCategory() {
     let params = {
       "page": this.pageIndex + 1,
@@ -68,14 +63,5 @@ export class CategoryManageComponent extends BaseComponent implements AfterViewI
     this.pageSize = event.pageSize;
     this.getListCategory();
   }
-  showToast() {
-    console.log(123);
 
-    this.toastrService.success('123');
-    this.toastrService.error('123');
-    this.toastrService.warning('123');
-    this.toastrService.error('everything is broken', 'Major Error', {
-      timeOut: 3000,
-    });
-  }
 }

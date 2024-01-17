@@ -8,7 +8,7 @@ export class ModalService {
   open(id: string) {
     setTimeout(() => {
       $("#" + id).modal('show');
-    }, 10);
+    }, 100);
   }
 
   close(id: string) {
