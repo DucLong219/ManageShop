@@ -51,10 +51,15 @@ export class DefaultLayoutComponent implements OnInit {
       label: label,
       url: nextUrl,
     };
+    console.log(breadc,'breadc');
+    
     const newBreadcrumbs = breadc.label ? [...breadcrumb, breadc] : [...breadcrumb];
+    console.log(newBreadcrumbs,'newBreadcrumbs1');
+
     if (route.firstChild) {
       return this.buildBreadCrumb(route.firstChild, nextUrl, newBreadcrumbs);
     }
+    console.log(newBreadcrumbs,'newBreadcrumbs2');
 
     return newBreadcrumbs;
   }

@@ -1,33 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
+import { takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/base-component';
+declare var $: any;
 
 @Component({
   selector: 'app-category-manage',
   templateUrl: './category-manage.component.html',
   styleUrls: ['./category-manage.component.scss']
 })
-export class CategoryManageComponent extends BaseComponent implements OnInit {
+export class CategoryManageComponent extends BaseComponent implements AfterViewInit, OnInit {
   listCategories: any[] = [];
-  numberShowPages = [10, 20, 40];
+  numberShowPages = [12, 24, 48];
   pageIndex: number = 0;
-  pageSize: number = 10;
+  pageSize: number = 12;
   pageLength: number = 0;
   listAllCategories: any[] = [];
+  ckEdit: boolean = false;
+  categoryDeteil: any;
 
   ngOnInit() {
-    this.getListCategory();
     this.categoryService.getAllCategory().subscribe((res) => {
       this.listAllCategories = res;
     })
+    this.initForm();
   }
-  
+  ngAfterViewInit() {
+    $('#modalAddCate').on('hidden.bs.modal', () => {
+      // Xử lý khi modal được đóng
+      console.log(123);
+      
+      this.ckEdit = false;
+
+    });
+  }
+  initForm() {
+    this.getListCategory();
+  }
+
+
   getListCategory() {
     let params = {
-      "page": this.pageIndex,
+      "page": this.pageIndex + 1,
       "size": this.pageSize
     }
-    this.categoryService.getListCategory(params).subscribe((res: any) => {
+    this.categoryService.getListCategory(params).pipe(takeUntil(this._onDestroySub)).subscribe((res: any) => {
       if (res && res.data) {
         const data = res.data
         this.listCategories = data.items;
@@ -38,9 +56,26 @@ export class CategoryManageComponent extends BaseComponent implements OnInit {
 
     });
   }
+  initAddCate() {
+    this.ckEdit = true;
+    this.modalService.open('modalAddCate');
+  }
+
   onPaging(event: PageEvent) {
+    console.log(event.pageIndex, 'event.pageIndex');
+
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
     this.getListCategory();
+  }
+  showToast() {
+    console.log(123);
+
+    this.toastrService.success('123');
+    this.toastrService.error('123');
+    this.toastrService.warning('123');
+    this.toastrService.error('everything is broken', 'Major Error', {
+      timeOut: 3000,
+    });
   }
 }
