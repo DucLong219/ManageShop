@@ -1,0 +1,28 @@
+.mdc-dialog__container {
+  width: 400px !important;
+}
+
+.modal-container {
+  padding: 20px;
+}
+
+.mat-dialog-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.mat-dialog-content {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin: 0 4px;
+}

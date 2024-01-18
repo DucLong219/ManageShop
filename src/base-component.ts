@@ -9,6 +9,7 @@ import { CategoryService } from './services/category.service';
 import { ValidatorService } from './services/validator.service';
 import { ToastrService } from 'ngx-toastr';
 import { ModalService } from './services/modal.service';
+import { MatDialog } from '@angular/material/dialog';
 // import { AuthenticationService } from './services/authentication.service';
 
 declare var $: any;
@@ -34,6 +35,7 @@ export class BaseComponent implements OnDestroy {
     public modalService: ModalService,
 
 
+    public dialog: MatDialog
   ) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))

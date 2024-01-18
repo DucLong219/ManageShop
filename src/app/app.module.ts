@@ -35,7 +35,7 @@ import { JwtInterceptor } from 'src/helpers/jwt.interceptor';
     SuppliersManageComponent,
     DefaultLayoutComponent, ...authContainers.containers,
     LeftMenuComponent, HeaderComponent, DefaultLayoutComponent, CategoryManageComponent,
-    MenuCategoryComponent,ModalConfirmDeleteComponent,ModalAddUpdateCategoryComponent
+    MenuCategoryComponent, ModalConfirmDeleteComponent, ModalAddUpdateCategoryComponent
 
   ],
   imports: [
@@ -61,7 +61,7 @@ import { JwtInterceptor } from 'src/helpers/jwt.interceptor';
     BaseComponent,
     AppSettings,
     CategoryService,
-    ValidatorService,ModalService,
+    ValidatorService, ModalService,
     provideAnimations(),
     provideToastr({
       timeOut: 5000,

@@ -1,11 +1,13 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, Directive, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { takeUntil } from 'rxjs';
 import { BaseComponent } from 'src/base-component';
+import { DialogConfirmComponent } from 'src/component/dialog-confirm/dialog-confirm.component';
 import { AppSettings } from 'src/services/api.config';
+
 
 
 @Component({
@@ -68,7 +70,7 @@ export class SuppliersManageComponent extends BaseComponent implements OnInit {
           this.pageLength = res.data.totalCount;
           console.log(this.listData);
 
-        }else{
+        } else {
           this.listData = [];
         }
       }
@@ -84,18 +86,27 @@ export class SuppliersManageComponent extends BaseComponent implements OnInit {
   selection: any = new SelectionModel<any>(true, []);
   initDeleteMul() {
     console.log(this.listChecked, 'listchecked');
-
+    this.openConfirmDialog();
   }
+
   checkAll(event: any) {
     if (event.checked) {
-      this.listChecked = this.listData.map((res: any) => res);
+      this.selection.clear();
+      this.listChecked = [...this.listData];
+      this.listChecked.forEach((item: any) => this.selection.select(item));
     } else {
+      this.selection.clear();
       this.listChecked = [];
     }
-
-    console.log(this.listChecked, 'this.listChecked');
-
   }
+
+  // Kiểm tra xem đã chọn tất cả hay chưa
+  isAllSelected(): boolean {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.listData.length;
+    return numSelected === numRows;
+  }
+
   checkOne(element: any) {
     const selectElement = this.selection.isSelected(element.id);
     console.log(selectElement, 'selectElement');
@@ -114,8 +125,38 @@ export class SuppliersManageComponent extends BaseComponent implements OnInit {
     console.log(this.listChecked, ' this.listChecked this.listChecked');
 
   }
+
+  openConfirmDialog(): void {
+    const dialogRef = this.dialog.open(DialogConfirmComponent, {
+      width: '450px',
+      data: {
+        title: 'Xác nhận xoá',
+        message: 'Bạn có chắc chắn muốn xoá không?',
+        callback: () => this.initDelete(this.listChecked)
+      },
+    });
+  }
   initEdit(item: any) { }
-  initDelete(item: any) { }
+
+  initDelete(items: any[]) {
+    // Xử lý xóa nhiều items ở đây
+    items.forEach(item => {
+      this.supplierService.deleteSupplier(item.id).subscribe((res: any) => {
+        if (res) {
+          console.log(res, '123');
+          this.toastrService.success('Xóa thành công');
+          this.modalService.close('confirmDelete');
+          this.searchSuppliers()
+        } else {
+          this.toastrService.success('Hệ thống bận vui lòng thử lại sau');
+        }
+      });
+    });
+  }
+
+
+  // ...
+
   initAddSuppiler() {
 
   }

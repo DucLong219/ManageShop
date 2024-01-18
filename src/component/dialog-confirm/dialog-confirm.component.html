@@ -1,0 +1,9 @@
+<div class="modal-container">
+  <h1 class="modal-title mat-dialog-title">{{ data.title }}</h1>
+  <div class="modal-body mat-dialog-content">{{ data.message }}</div>
+  <div class="modal-footer mat-dialog-actions">
+    <button type="button" class="btn btn-secondary" (click)="onNoClick()">Hủy</button>
+    <button type="button" class="btn btn-primary" mat-dialog-close="true" cdkFocusInitial (click)="onYesClick()">Đồng
+      ý</button>
+  </div>
+</div>
