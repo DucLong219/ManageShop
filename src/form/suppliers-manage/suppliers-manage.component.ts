@@ -139,7 +139,6 @@ export class SuppliersManageComponent extends BaseComponent implements OnInit {
   initEdit(item: any) { }
 
   initDelete(items: any[]) {
-    // Xử lý xóa nhiều items ở đây
     items.forEach(item => {
       this.supplierService.deleteSupplier(item.id).subscribe((res: any) => {
         if (res) {
@@ -154,8 +153,6 @@ export class SuppliersManageComponent extends BaseComponent implements OnInit {
     });
   }
 
-
-  // ...
 
   initAddSuppiler() {
 
