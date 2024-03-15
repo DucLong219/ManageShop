@@ -4,11 +4,17 @@ import { ForgotPasswordComponent, LoginComponent, RegisterComponent } from './fo
 import { DefaultLayoutComponent } from './form/layouts/default-layout';
 import { SuppliersManageComponent } from './form/suppliers-manage/suppliers-manage.component';
 import { CategoryManageComponent } from './form/category-manage/category-manage.component';
+import { ChuKySoComponent } from './form/chu-ky-so/chu-ky-so.component';
 
 const routes: Routes = [
-
   {
-    path: '', component: DefaultLayoutComponent,
+    path: 'chu-ky-so', component: ChuKySoComponent,
+    data: {
+      breadcrumb: 'Chữ ký số'
+    },
+  },
+  {
+    path: '',
     data: {
       breadcrumb: 'Home'
     }, children: [
@@ -22,6 +28,12 @@ const routes: Routes = [
         path: 'category', component: CategoryManageComponent,
         data: {
           breadcrumb: 'Quản lý danh mục'
+        },
+      },
+      {
+        path: 'chu-ky-so', component: ChuKySoComponent,
+        data: {
+          breadcrumb: 'Chữ ký số'
         },
       },
 
@@ -52,7 +64,7 @@ const routes: Routes = [
     ]
   },
   // otherwise redirect to home
-  { path: '**', redirectTo: 'dashboard' },
+  { path: '**', redirectTo: 'chu-ky-so' },
 ];
 
 @NgModule({

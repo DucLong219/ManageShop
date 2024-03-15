@@ -1,0 +1,30 @@
+<button (click)="generateRSAKeyPair()">Tạo khóa RSA</button>
+<div class="d-flex mt-3" *ngIf="privateKey && publicKey">
+  <div class="m-3">
+    <div>PrivateKey</div>
+    <textarea cols="30" rows="10" [(ngModel)]="privateKey"></textarea>
+  </div>
+  <div class="m-3">
+    <div>publicKey</div>
+    <textarea cols="30" rows="10" [(ngModel)]="publicKey"></textarea>
+  </div>
+</div>
+<br>
+<div class="d-flex mt-3">
+  <div class="m-3">
+    <div>encrypted </div> <button (click)="encode(this.hashedValue)">encode</button>
+    <textarea cols="30" rows="10" [(ngModel)]="encrypted "></textarea>
+  </div>
+  <div class="m-3">
+    <div>decrypted </div> <button (click)=" decode(this.encrypted)">decode</button>
+    <textarea cols="30" rows="10" [(ngModel)]="decrypted "></textarea>
+  </div>
+</div>
+<br>
+<input type="file" (change)="onFileChange($event)">
+<button (click)="hashFile()" [disabled]="!fileToHash">Hash File</button>
+
+<div *ngIf="hashedValue">
+  <h4>Hashed Value (SHA-256):</h4>
+  <pre>{{ hashedValue }}</pre>
+</div>

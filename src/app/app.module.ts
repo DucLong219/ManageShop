@@ -27,6 +27,7 @@ import { ModalService } from 'src/services/modal.service';
 import { ModalAddUpdateCategoryComponent } from 'src/modals/modal-add-update-category/modal-add-update-category.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { JwtInterceptor } from 'src/helpers/jwt.interceptor';
+import { ChuKySoComponent } from 'src/form/chu-ky-so/chu-ky-so.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { JwtInterceptor } from 'src/helpers/jwt.interceptor';
     SuppliersManageComponent,
     DefaultLayoutComponent, ...authContainers.containers,
     LeftMenuComponent, HeaderComponent, DefaultLayoutComponent, CategoryManageComponent,
-    MenuCategoryComponent, ModalConfirmDeleteComponent, ModalAddUpdateCategoryComponent
+    MenuCategoryComponent, ModalConfirmDeleteComponent, ModalAddUpdateCategoryComponent,
+    ChuKySoComponent
 
   ],
   imports: [
