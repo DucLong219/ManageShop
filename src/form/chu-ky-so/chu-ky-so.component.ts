@@ -13,11 +13,14 @@ export class ChuKySoComponent {
   privateKey!: string;
 
   fileToHash!: File;
+  fileToHash1!: File;
   hashedValue!: string;
+  hashedValueCf!: string;
 
-  encrypted !:string;
-  decrypted !:string;
-
+  encrypted !: string;
+  decrypted !: string;
+  imageUrl!: string
+  imageUrl1!: string
   generateRSAKeyPair(): void {
     const keyPair = forge.pki.rsa.generateKeyPair({ bits: 2048 });
 
@@ -27,23 +30,31 @@ export class ChuKySoComponent {
 
   onFileChange(event: any): void {
     this.fileToHash = event.target.files[0];
+    this.imageUrl = URL.createObjectURL(this.fileToHash);
   }
-
-  hashFile(): void {
+  onFileChange1(event: any): void {
+    this.fileToHash1 = event.target.files[0];
+    this.imageUrl1 = URL.createObjectURL(this.fileToHash1);
+  }
+  hashFile(hash?:any,ck?:boolean): void {
     const fileReader = new FileReader();
 
     fileReader.onload = (e) => {
       const fileContent = fileReader.result as string;
       const md = forge.md.sha256.create();
       md.update(fileContent);
-      this.hashedValue = md.digest().toHex();
+      if(ck){
+        this.hashedValue = md.digest().toHex();
+      }else{
+        this.hashedValueCf = md.digest().toHex(); 
+      }
     };
 
-    fileReader.readAsText(this.fileToHash);
+    fileReader.readAsText(hash);
     // console.log(fileReader.readAsText(this.fileToHash),'fileReader.readAsText(this.fileToHash);');
-    
-    
-   
+
+
+
   }
   encode(data: string) {
     const publicKey = forge.pki.publicKeyFromPem(this.publicKey);
