@@ -28,7 +28,7 @@ import { ModalAddUpdateCategoryComponent } from 'src/modals/modal-add-update-cat
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { JwtInterceptor } from 'src/helpers/jwt.interceptor';
 import { ChuKySoComponent } from 'src/form/chu-ky-so/chu-ky-so.component';
-
+import { NgxExtendedPdfViewerModule  } from 'ngx-extended-pdf-viewer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +48,7 @@ import { ChuKySoComponent } from 'src/form/chu-ky-so/chu-ky-so.component';
     FormsModule,
     ReactiveFormsModule,
     NgxSpinnerModule.forRoot(),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot(),NgxExtendedPdfViewerModule  ,
     MaterialModule, TranslateModule.forRoot({
       defaultLanguage: environment.default_language,
       loader: {
@@ -57,6 +57,7 @@ import { ChuKySoComponent } from 'src/form/chu-ky-so/chu-ky-so.component';
         deps: [HttpClient]
       }
     }),
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
