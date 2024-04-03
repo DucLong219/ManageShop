@@ -19,6 +19,10 @@ export class ChuKySoComponent extends BaseComponent {
   privateKey!: forge.pki.rsa.PrivateKey;
   publicKeyPem!: any;
   privateKeyPem!: any;
+  publicKey1!: forge.pki.rsa.PublicKey;
+  privateKey1!: forge.pki.rsa.PrivateKey;
+  publicKeyPem1!: any;
+  privateKeyPem1!: any;
   selectedFile!: any;
   selectedFile2!: any;
   selectedFile3!: any;
@@ -30,15 +34,35 @@ export class ChuKySoComponent extends BaseComponent {
 
   encrypted !: string;
   decrypted !: string;
+  encrypted2 !: string;
+  decrypted2 !: string;
+  encrypted3 !: string;
+  decrypted3 !: string;
+  encrypted4 !: string;
+  decrypted4 !: string;
   imageUrl!: any
   fileContent!: string
+  fileContent2!: string
+  fileContent3!: string
+  fileContent4!: string
 
   generateRSAKeyPair(sign?: any): void {
-    const keyPair = forge.pki.rsa.generateKeyPair({ bits: 2048 });
-    this.publicKey = keyPair.publicKey;
-    this.privateKey = keyPair.privateKey;
-    this.publicKeyPem = forge.pki.publicKeyToPem(this.publicKey);
-    this.privateKeyPem = forge.pki.privateKeyToPem(this.privateKey);
+    if (sign) {
+      const keyPair = forge.pki.rsa.generateKeyPair({ bits: 2048 });
+
+      this.publicKey = keyPair.publicKey;
+      this.privateKey = keyPair.privateKey;
+      this.publicKeyPem = forge.pki.publicKeyToPem(this.publicKey);
+      this.privateKeyPem = forge.pki.privateKeyToPem(this.privateKey);
+    } else {
+      const keyPair2 = forge.pki.rsa.generateKeyPair({ bits: 2048 });
+
+      this.publicKey1 = keyPair2.publicKey;
+      this.privateKey1 = keyPair2.privateKey;
+      this.publicKeyPem1 = forge.pki.publicKeyToPem(this.publicKey1);
+      this.privateKeyPem1 = forge.pki.privateKeyToPem(this.privateKey1);
+    }
+
   }
 
   onFileSelected(event: any, type?: number) {
@@ -143,14 +167,46 @@ export class ChuKySoComponent extends BaseComponent {
     const encodedHash = forge.util.encode64(hash.getBytes());
     return encodedHash;
   }
-  encryptData(data: any, publicKey: forge.pki.rsa.PublicKey) {
-    const encryptedData = publicKey.encrypt(data);
-    this.encrypted = forge.util.encode64(encryptedData);
-    this.fileContent = this.encrypted;
+  encryptData(data: any, publicKey: forge.pki.rsa.PublicKey, key?: number) {
+    switch (key) {
+      case 1:
+        const encryptedData = publicKey.encrypt(data);
+        this.encrypted = forge.util.encode64(encryptedData);
+        this.fileContent = this.encrypted;
+        break;
+      case 2:
+        const encryptedData2 = publicKey.encrypt(data);
+        this.encrypted2 = forge.util.encode64(encryptedData2);
+        this.fileContent2 = this.encrypted2;
+        break;
+      case 3:
+        const encryptedData3 = publicKey.encrypt(data);
+        this.encrypted3 = forge.util.encode64(encryptedData3);
+        this.fileContent3 = this.encrypted3;
+        break;
+      case 4:
+        const encryptedData4 = publicKey.encrypt(data);
+        this.encrypted4 = forge.util.encode64(encryptedData4);
+        this.fileContent4 = this.encrypted4;
+        break;
+      default:
+        break;
+    }
+
   }
-  decryptData(data: any, privateKey: forge.pki.rsa.PrivateKey) {
-    const encryptedBytes = forge.util.decode64(data);
-    this.decrypted = privateKey.decrypt(encryptedBytes);
+  decryptData(data: any, privateKey: forge.pki.rsa.PrivateKey, key?: number) {
+    switch (key) {
+      case 1:
+        const encryptedBytes1 = forge.util.decode64(data);
+        this.decrypted = privateKey.decrypt(encryptedBytes1);
+        break;
+      case 2:
+        const encryptedBytes = forge.util.decode64(data);
+        this.decrypted3 = privateKey.decrypt(encryptedBytes);
+        break;
+      default:
+        break;
+    }
   }
   verifySign(key?: number) {
     switch (key) {
@@ -162,7 +218,7 @@ export class ChuKySoComponent extends BaseComponent {
         }
         break;
       case 2:
-        if (this.decrypted === this.hashValue2) {
+        if (this.decrypted3 === this.hashValue3) {
           alert('Xác nhận hợp đồng thành công');
         } else {
           alert('Xác nhận hợp đồng thất bại');

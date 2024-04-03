@@ -1,52 +1,3 @@
-<!-- <div class="row">
-  <div class="col-4"><button (click)="generateRSAKeyPair()">Tạo khóa RSA</button>
-    <div class="d-flex mt-3" *ngIf="privateKey && publicKey">
-      <div class="m-3">
-        <div>PrivateKey</div>
-        <textarea cols="30" rows="10" [(ngModel)]="privateKey"></textarea>
-      </div>
-      <div class="m-3">
-        <div>publicKey</div>
-        <textarea cols="30" rows="10" [(ngModel)]="publicKey"></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="col-4">
-    <div class="d-flex mt-3">
-      <div class="m-3">
-        <div>encrypted </div> <button (click)="encode(this.hashedValue)">encode</button>
-        <textarea cols="30" rows="10" [(ngModel)]="encrypted "></textarea>
-      </div>
-      <div class="m-3">
-        <div>decrypted </div> <button (click)=" decode(this.encrypted)">decode</button>
-        <textarea cols="30" rows="10" [(ngModel)]="decrypted "></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="col-4">
-    <div class="d-flex mt-3">
-      <img style="width: 200px;" [src]="imageUrl" *ngIf="imageUrl">
-    </div>
-    <button (click)="hashFile(fileToHash,true)" [disabled]="!fileToHash">Hash File</button>
-  </div>
-</div>
-<input type="file" (change)="onFileChange($event)">
-<div *ngIf="hashedValue">
-  <h4>Hashed Value (SHA-256):</h4>
-  <pre>{{ hashedValue }}</pre>
-</div>
-<input type="file" (change)="onFileChange1($event)">
-
-<div *ngIf="hashedValueCf">
-  <h4>Hashed Value (SHA-256) verify:</h4>
-  <pre>{{ hashedValueCf }}</pre>
-</div>
-<div class="col-4">
-  <div class="d-flex mt-3">
-    <a [href]="imageUrl" download="file-hop-dong.pdf">Tải xuống file</a>
-  </div>
-  <button (click)="hashFile(fileToHash1,false)" [disabled]="!fileToHash1">Hash File</button>
-</div> -->
 <div>
   <div class="RSA mt-3 my-0">
     <h1 class="text-align:center">CHỮ KÝ SỐ TRONG HỢP ĐỒNG KINH TẾ</h1>
@@ -78,7 +29,7 @@
             <label class="float-end" for="privateKey1">Khóa bí mật:</label>
           </div>
           <div class="col-md-9">
-            <textarea class="form-control" id="privateKey1"></textarea>
+            <textarea class="form-control" id="privateKey1" [(ngModel)]="privateKeyPem1"></textarea>
           </div>
         </div>
 
@@ -87,16 +38,16 @@
             <label class="float-end" for="publicKey1">Khóa công khai:</label>
           </div>
           <div class="col-md-9">
-            <textarea class="form-control" id="publicKey1"></textarea>
+            <textarea class="form-control" id="publicKey1" [(ngModel)]="publicKeyPem1"></textarea>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="d-flex">
-    <div class="sender" style="height: 600px; width: 50%;">
+    <div class="sender" style="height: 1000px; width: 50%;">
       <h1>Người gửi</h1>
-      <p class="text-danger">* Đã có khóa bí mật</p>
+      <p class="text-danger" *ngIf="privateKey">* Đã có khóa bí mật</p>
       <div class="row">
         <div class="col-md-4">File ký:</div>
         <div class="col-md-8">
@@ -114,13 +65,35 @@
         <div class="col-md-4">Mã hóa chữ ký số:</div>
         <div class="col-md-8">
           <textarea class="form-control mb-3" id="encrypted" [(ngModel)]="encrypted"></textarea>
-          <button (click)="encryptData(hashValue,this.publicKey)" *ngIf="hashValue">Mã hóa chữ ký số</button>
+          <button class="mt-3" (click)="encryptData(hashValue,this.publicKey,1)" *ngIf="hashValue">Mã hóa chữ ký
+            số</button>
+        </div>
+      </div>
+      <p class="text-danger" *ngIf="privateKey1">* Đã có khóa bí mật</p>
+      <div class="row">
+        <div class="col-md-4">File hợp đồng:</div>
+        <div class="col-md-8">
+          <input type="file" (change)="onFileSelected($event,4)">
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-4">Băm SHA-256:</div>
+        <div class="col-md-8">
+          <textarea class="form-control" id="hashedValue4" [(ngModel)]="hashValue4"></textarea>
+          <button class="mt-3" (click)="hashFile(4)">Băm file hợp đồng</button>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-4">Mã hóa file hợp đồng:</div>
+        <div class="col-md-8">
+          <textarea class="form-control mb-3" id="encrypted4" [(ngModel)]="encrypted4"></textarea>
+          <button (click)="encryptData(hashValue4,this.publicKey1,4)" *ngIf="hashValue4">Mã hóa file hợp đồng</button>
         </div>
       </div>
     </div>
-    <div class="reciever" style="height: 600px; width: 50%;">
+    <div class="reciever" style="height: 1000px; width: 50%;">
       <h1>Người nhận</h1>
-      <p class="text-danger">* Đã có khóa công khai</p>
+      <p class="text-danger" *ngIf="publicKey">* Đã có khóa công khai</p>
       <div class="row">
         <div class="col-md-4">File ký:</div>
         <div class="col-md-8">
@@ -131,28 +104,49 @@
         <div class="col-md-4">Băm SHA-256 (chữ ký số):</div>
         <div class="col-md-8">
           <textarea class="form-control" id="hashedValue2" [(ngModel)]="hashValue2"></textarea>
-          <button (click)="hashFile(2)">Tạo chữ ký số</button>
+          <button class="mt-3" (click)="hashFile(2)">Tạo chữ ký số</button>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-3">
         <div class="col-md-4">Chữ ký mã hóa ban đầu:</div>
         <div class="col-md-8">
-          <!-- <input type="file"> -->
           <textarea class="form-control" [(ngModel)]="fileContent"></textarea>
-          <button class="mt-3" (click)="decryptData(fileContent,privateKey)">Giải mã chữ ký</button>
+          <button class="mt-3" (click)="decryptData(fileContent,privateKey,1)">Giải mã chữ ký</button>
         </div>
       </div>
-      <!-- <div class="row mt-3">
-          <div class="col-md-4">Băm SHA-256:</div>
-          <div class="col-md-8">
-            <textarea class="form-control" id="hashedValueCf"></textarea>
-          </div>
-        </div> -->
       <div class="row mt-3">
         <div class="col-md-4">Chữ ký được giải mã:</div>
         <div class="col-md-8">
           <textarea class="form-control" id="decrypted" [(ngModel)]="decrypted"></textarea>
-          <button (click)="verifySign(1)">Xác minh chữ ký</button>
+          <button class="mt-3" (click)="verifySign(1)">Xác minh chữ ký</button>
+        </div>
+      </div>
+      <p class="text-danger" *ngIf="publicKey1">* Đã có khóa công khai</p>
+      <div class="row mt-3">
+        <div class="col-md-4">File hợp đồng:</div>
+        <div class="col-md-8">
+          <input type="file" (change)="onFileSelected($event,3)">
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-4">Băm SHA-256 :</div>
+        <div class="col-md-8">
+          <textarea class="form-control" id="hashedValue3" [(ngModel)]="hashValue3"></textarea>
+          <button class="mt-3" (click)="hashFile(3)">Băm file</button>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-4">Mã hóa hợp đồng ban đầu:</div>
+        <div class="col-md-8">
+          <textarea class="form-control" [(ngModel)]="fileContent4"></textarea>
+          <button class="mt-3" (click)="decryptData(fileContent4,privateKey1,2)">Giải mã hợp đồng</button>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-4">Hợp đồng được giải mã:</div>
+        <div class="col-md-8">
+          <textarea class="form-control" id="decrypted3" [(ngModel)]="decrypted3"></textarea>
+          <button class="mt-3" (click)="verifySign(2)">Xác minh hợp đồng</button>
         </div>
       </div>
     </div>
